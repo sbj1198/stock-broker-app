@@ -22,12 +22,10 @@ export const Login = () => {
         })
         .catch((e) => alert("login failed"));
     } else if (email && password) {
-      dispatch(login({ email, password }))
-        .then((res) => {
-          alert("login successful");
-          navigate(comingFrom, { replace: true });
-        })
-        .catch((e) => alert("login failed"));
+      dispatch(login({ email, password })).then((res) => {
+        alert("login successful");
+        navigate(comingFrom, { replace: true });
+      });
     }
     setEmail("");
     setPassword("");
