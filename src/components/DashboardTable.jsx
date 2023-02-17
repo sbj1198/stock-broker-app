@@ -13,14 +13,19 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getStock } from "../redux/appReducer/action";
+import { deleteStock } from "../redux/appReducer/action";
 
 export const DashboardTable = () => {
   const stocks = useSelector((store) => store.AppReducer.stocks);
   const dispatch = useDispatch();
-
+  console.log(stocks);
   useEffect(() => {
     dispatch(getStock());
   }, []);
+
+  const handleDelete = (id) => {
+    dispatch(deleteStock(id));
+  };
 
   return (
     <TableContainer>
@@ -57,7 +62,9 @@ export const DashboardTable = () => {
                   <Button>Edit</Button>
                 </Td>
                 <Td>
-                  <Button>Delete</Button>
+                  <Button onClick={() => handleDelete(stock?.id)}>
+                    Delete
+                  </Button>
                 </Td>
               </Tr>
             );

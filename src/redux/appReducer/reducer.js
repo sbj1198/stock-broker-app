@@ -43,6 +43,22 @@ export const reducer = (state = initialState, { type, payload }) => {
         isError: true,
         stocks: [],
       };
+    case types.DELETE_STOCK_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case types.DELETE_STOCK_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case types.DELETE_STOCK_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
     default:
       return state;
   }

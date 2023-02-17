@@ -70,7 +70,7 @@ export const Dashboard = () => {
             name="company_type"
             placeholder="Company Type"
             mb="10px"
-            value={companyDetails.company_name}
+            value={companyDetails.company_type}
             onChange={handleChange}
           >
             <option value="bank">Bank</option>
