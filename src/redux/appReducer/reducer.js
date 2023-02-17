@@ -59,6 +59,23 @@ export const reducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         isError: true,
       };
+    case types.UPDATE_STOCK_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case types.UPDATE_STOCK_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        stocks: [...state.stocks, payload],
+      };
+    case types.UPDATE_STOCK_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
     default:
       return state;
   }

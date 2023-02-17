@@ -11,14 +11,15 @@ import {
   Img,
   Button,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getStock } from "../redux/appReducer/action";
 import { deleteStock } from "../redux/appReducer/action";
+import { EditModal } from "./EditModal";
 
 export const DashboardTable = () => {
   const stocks = useSelector((store) => store.AppReducer.stocks);
   const dispatch = useDispatch();
-  console.log(stocks);
+  // console.log(stocks);
   useEffect(() => {
     dispatch(getStock());
   }, []);
@@ -59,7 +60,7 @@ export const DashboardTable = () => {
                 <Td>{stock?.cost_per_share}</Td>
                 <Td>{stock?.price_action}</Td>
                 <Td>
-                  <Button>Edit</Button>
+                  <EditModal id={stock?.id} />
                 </Td>
                 <Td>
                   <Button onClick={() => handleDelete(stock?.id)}>

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Select } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Select, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addStock } from "../redux/appReducer/action";
@@ -42,6 +42,9 @@ export const Dashboard = () => {
 
   return (
     <>
+      <Text fontSize="4xl" textAlign="center">
+        Admin Dashboard
+      </Text>
       <Box
         margin="auto"
         boxShadow="rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px"
@@ -116,7 +119,7 @@ export const Dashboard = () => {
           <Button onClick={listStock}>List Stock</Button>
         </Flex>
       </Box>
-      <Box mt="50px">
+      <Box mt="80px">
         <DashboardTable />
       </Box>
     </>
