@@ -116,7 +116,9 @@ export const Dashboard = () => {
             mb="10px"
             onChange={handleChange}
           />
-          <Button onClick={listStock}>List Stock</Button>
+          <Button colorScheme="pink" onClick={listStock}>
+            List Stock
+          </Button>
         </Flex>
       </Box>
       <Box mt="80px">

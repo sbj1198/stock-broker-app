@@ -52,7 +52,9 @@ export const EditModal = ({ id }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>Edit</Button>
+      <Button colorScheme="green" onClick={onOpen}>
+        Edit
+      </Button>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
@@ -125,6 +127,7 @@ export const EditModal = ({ id }) => {
                 onChange={handleChange}
               />
               <Button
+                colorScheme="cyan"
                 onClick={() => {
                   updateStock();
                 }}

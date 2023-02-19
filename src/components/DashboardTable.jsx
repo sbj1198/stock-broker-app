@@ -53,9 +53,9 @@ export const DashboardTable = () => {
                     <Img h="80px" w="150px" src={stock?.company_logo} />
                   </Box>
                 </Td>
-                <Td>{stock?.company_name}</Td>
-                <Td>{stock?.company_type}</Td>
-                <Td>{stock?.stock_exchange}</Td>
+                <Td>{(stock?.company_name).toUpperCase()}</Td>
+                <Td>{(stock?.company_type).toUpperCase()}</Td>
+                <Td>{(stock?.stock_exchange).toUpperCase()}</Td>
                 <Td>{stock?.total_shares}</Td>
                 <Td>{stock?.cost_per_share}</Td>
                 <Td>{stock?.price_action}</Td>
@@ -63,7 +63,10 @@ export const DashboardTable = () => {
                   <EditModal id={stock?.id} />
                 </Td>
                 <Td>
-                  <Button onClick={() => handleDelete(stock?.id)}>
+                  <Button
+                    colorScheme="red"
+                    onClick={() => handleDelete(stock?.id)}
+                  >
                     Delete
                   </Button>
                 </Td>

@@ -15,64 +15,77 @@ import { useDispatch } from "react-redux";
 
 export const Stocks = () => {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState("");
   const stocks = useSelector((store) => store.AppReducer.stocks);
+
+  const [quantity, setQuantity] = useState({});
 
   useEffect(() => {
     dispatch(getStock());
   }, []);
 
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setQuantity({
+      ...quantity,
+      [name]: value,
+    });
+  };
+
   return (
     <Grid
       templateColumns="repeat(2, 350px)"
-      templateRows="repeat(2, 1fr)"
+      templateRows="repeat(2, auto)"
       justifyContent="center"
       alignItems="center"
       gap="20px"
+      pt="30px"
+      pb="30px"
     >
-      {stocks?.map((stock) => {
+      {stocks?.map((stock, index) => {
         return (
           <GridItem
             boxShadow="rgba(3, 102, 214, 0.3) 0px 0px 0px 3px"
             justifyContent="center"
             p="20px"
+            key={stock.id}
           >
-            <Box>
+            <Box mb="10px">
               <Image h="80px" src={stock?.company_logo} />
             </Box>
-            <Box>
+            <Box mb="10px">
               <Heading size="md">{stock?.company_name}</Heading>
             </Box>
-            <Box>
+            <Box mb="10px">
               <Text as="span">EXCHANGE: </Text>
               <Text as="span">{(stock?.stock_exchange).toUpperCase()}</Text>
             </Box>
-            <Box>
+            <Box mb="10px">
               <Text as="span">TYPE: </Text>
               <Text as="span">{(stock?.company_type).toUpperCase()}</Text>
             </Box>
-            <Box>
+            <Box mb="10px">
               <Text as="span">TOTAL SHARES: </Text>
               <Text as="span">{stock?.total_shares}</Text>
             </Box>
-            <Box>
+            <Box mb="10px">
               <Text as="span">COST PER SHARE: </Text>
               <Text as="span">{stock?.cost_per_share}</Text>
             </Box>
-            <Box>
+            <Box mb="10px">
               <Text as="span">PRICE ACTION: </Text>
               <Text as="span">{stock?.price_action}</Text>
             </Box>
-            <Box>
+            <Box mb="10px">
               <Input
+                name={stock?.company_name}
+                value={quantity.company_name}
                 type="number"
                 placeholder="Quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
+                onChange={handleChange}
               />
             </Box>
-            <Box>
-              <Button>Buy</Button>
+            <Box mb="10px">
+              <Button colorScheme="green">Buy</Button>
             </Box>
           </GridItem>
         );
