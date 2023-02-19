@@ -3,6 +3,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   stocks: [],
+  quantity: [],
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -75,6 +76,24 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    case types.BUY_STOCK_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case types.BUY_STOCK_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        quantity: [...state.quantity, payload],
+      };
+    case types.BUY_STOCK_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        quantity: [],
       };
     default:
       return state;

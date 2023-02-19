@@ -55,9 +55,11 @@ export const login = (payload) => (dispatch) => {
         let loginStatus = res?.data?.find(
           (e) => e.email === payload.email && e.password === payload.password
         );
+        // console.log(loginStatus);
         if (loginStatus) {
           dispatch({
             type: types.LOGIN_SUCCESS,
+            payload: loginStatus.id,
           });
         } else {
           dispatch({

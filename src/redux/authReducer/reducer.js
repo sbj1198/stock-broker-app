@@ -6,6 +6,7 @@ const intialState = {
   isAuth: false,
   isSignedUp: false,
   role: "",
+  id: undefined,
 };
 
 export const reducer = (state = intialState, { type, payload }) => {
@@ -39,6 +40,7 @@ export const reducer = (state = intialState, { type, payload }) => {
         ...state,
         isLoading: false,
         isAuth: true,
+        id: payload,
       };
     case types.LOGIN_FAILURE:
       return {

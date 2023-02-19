@@ -10,14 +10,18 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getStock } from "../redux/appReducer/action";
+import { buyStock, getStock } from "../redux/appReducer/action";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 export const Stocks = () => {
   const dispatch = useDispatch();
   const stocks = useSelector((store) => store.AppReducer.stocks);
-
+  const id = useSelector((store) => store.AuthReducer.id);
   const [quantity, setQuantity] = useState({});
+  const location = useLocation();
+
+  // console.log(location);
 
   useEffect(() => {
     dispatch(getStock());
@@ -29,6 +33,10 @@ export const Stocks = () => {
       ...quantity,
       [name]: value,
     });
+  };
+
+  const handleClick = (e) => {
+    dispatch(buyStock(quantity, id));
   };
 
   return (
@@ -85,7 +93,9 @@ export const Stocks = () => {
               />
             </Box>
             <Box mb="10px">
-              <Button colorScheme="green">Buy</Button>
+              <Button onClick={handleClick} colorScheme="green">
+                Buy
+              </Button>
             </Box>
           </GridItem>
         );

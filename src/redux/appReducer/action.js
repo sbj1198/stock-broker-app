@@ -51,3 +51,17 @@ export const deleteStock = (id) => (dispatch) => {
     })
     .catch((e) => dispatch({ type: types.DELETE_STOCK_FAILURE }));
 };
+
+export const buyStock = (payload, id) => (dispatch) => {
+  // console.log(payload);
+  dispatch({ type: types.BUY_STOCK_REQUEST });
+  return axios
+    .patch(`https://stockbroker.onrender.com/users/${id}`, {
+      quantity: [payload],
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: types.BUY_STOCK_SUCCESS, payload: res.data });
+    })
+    .catch((e) => dispatch({ type: types.BUY_STOCK_FAILURE }));
+};

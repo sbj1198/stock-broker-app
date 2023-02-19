@@ -13,11 +13,11 @@ export const Register = () => {
 
   const handleRegister = () => {
     if (email && username && password) {
-      dispatch(register({ username, email, password, role: "user" })).then(
-        (res) => {
-          navigate("/login", { replace: true });
-        }
-      );
+      dispatch(
+        register({ username, email, password, role: "user", quantity: [] })
+      ).then((res) => {
+        navigate("/login", { replace: true });
+      });
     }
     setUsername("");
     setEmail("");
